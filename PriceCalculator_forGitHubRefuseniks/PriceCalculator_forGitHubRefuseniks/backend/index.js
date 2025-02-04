@@ -8,7 +8,7 @@ var options = {
     index: "myWebPage.html"
   };
 
-var dir = path.join(__dirname, '../backend');
+var dir = path.join(__dirname, '../frontend');
 
 app.get('/api', function(req, res){
     res.send("Yes we have an API now")

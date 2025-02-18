@@ -13,7 +13,7 @@
 <body>
 
 <div class="container">
-  <h1 class=""hero">How much to charge?</h1>
+  <h1 class="hero">How much to charge?</h1>
   <p class="lead">If you were a freelance web designer, how much should you charge for a website? Fill out the form and find out!</p>
 </div>
 
@@ -31,6 +31,11 @@
 <div class="container">
   <img src="inspirobot.jpg" class="img-responsive" alt="Inspirobot image">
 </div>
+
+<h1>type something</h1>
+<input type="text" id="quoteName" placeholder="enter text name">
+<button onclick="saveQuote()">Save Quote</button>
+<p id="responseMessage"></p>
 
 <footer class="container-fluid text-center">
   <p>Styled in Bootstrap</p> 
@@ -71,8 +76,26 @@
     return false;
   }
 
-
+  function saveQuote() {             
+    const quoteName = document.getElementById("quoteName").value;             
+    
+    fetch('/saveQuote', {                 
+      method: 'POST',                 
+      headers: {                     
+        'Content-Type': 'application/json'               
+        },                
+        body: JSON.stringify({ quoteName })             
+    })            
+    .then(response => response.json())             
+    .then(data => {                 
+          document.getElementById("responseMessage").innerText = "Response: " + data.message; 
+    }) 
+    .catch(error => console.error("Error:", error));
+  } 
   </script>
+
+
+
 
 </body>
 </html>

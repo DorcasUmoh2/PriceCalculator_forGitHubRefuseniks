@@ -39,6 +39,13 @@ app.use(function ( req, res, next) {
     res.send('This page does not exist!')
 });
 
+//API Endpoint to save a quote
+app.post('/savequote', (req, res) => {     
+    const { quoteName } = req.body;     
+    console.log("Received quote:", quoteName);     
+    res.json({ message: `Quote received: ${quoteName}` });
+}); 
+
 app.listen(8000, function () {
     console.log('Listening on http://localhost:8000/');
 });
